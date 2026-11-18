@@ -282,3 +282,36 @@
 .marquee-wrap:hover .animate-marquee-rtl {
   animation-play-state: paused;
 }
+
+/* ───────────────────────── Google Translate Clean Overrides ───────────────────────── */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.goog-te-banner {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.skiptranslate iframe {
+  display: none !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}

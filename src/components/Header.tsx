@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { LanguageSelector } from './LanguageSelector';
 
 interface HeaderProps {
   activeTab: string;
@@ -51,10 +52,12 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-4 text-[11px] font-sans">
+          <div className="flex items-center gap-3 sm:gap-4 text-[11px] font-sans">
             <span className="hidden md:inline font-mono">Tel: +1 (650) 695-6923</span>
             <span className="hidden md:inline text-white/50">|</span>
-            <span className="text-white font-mono font-medium">info@3axialsteeldetail.com</span>
+            <span className="text-white font-mono font-medium hidden sm:inline">info@3axialsteeldetail.com</span>
+            <span className="text-white/50 hidden sm:inline">|</span>
+            <LanguageSelector variant="topbar" />
           </div>
         </div>
       </div>
@@ -200,14 +203,22 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
               ))}
 
-              <div className="pt-4 flex gap-3">
+              {/* Mobile Language Selector */}
+              <div className="pt-2">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold block mb-1.5">
+                  Select Language (110+ Languages)
+                </span>
+                <LanguageSelector variant="mobile" />
+              </div>
+
+              <div className="pt-2 flex gap-3">
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
                     if (onOpenEnquire) onOpenEnquire();
                     else handleNavClick('contact');
                   }}
-                  className="w-full bg-[#0099ff] text-white text-xs font-bold font-mono py-3 uppercase text-center rounded-xs"
+                  className="w-full bg-[#0099ff] text-white text-xs font-bold font-mono py-3 uppercase text-center rounded-xs cursor-pointer shadow-sm"
                 >
                   REQUEST A QUOTE
                 </button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { LanguageSelector } from './LanguageSelector';
 
 interface FooterProps {
   setActiveTab: (tab: string) => void;
@@ -164,6 +165,8 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onOpenEnquire: _on
             Copyright {new Date().getFullYear()} 3-Axial Steel Detailing Services Pvt. Ltd. | All Rights Reserved.
           </div>
           <div className="flex items-center gap-4 text-[11px]">
+            <LanguageSelector variant="topbar" />
+            <span className="text-white/20">|</span>
             <a href="#" className="hover:text-white transition-colors">TERMS OF USE</a>
             <span className="text-white/20">|</span>
             <a href="#" className="hover:text-white transition-colors">PRIVACY POLICY</a>
