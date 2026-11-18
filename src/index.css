@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display: "Sora", "Manrope", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-heading: "Sora", "Manrope", system-ui, sans-serif;
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    /* 3 Axial Steel Detailing Palette: Lighter Steel Gray (#929da7), Secondary Blue (#0099ff), Accent Red (#e8250e) */
+    --color-steel: #929da7;
+    --color-steel-light: #b8c4ce;
+    --color-steel-lighter: #f1f5f9;
+    --color-bg: #fdfdfe;
+    --color-bg-alt: #f8fafc;
+    --color-surface: #fdfdfe;
+    --color-surface-translucent: rgba(253, 253, 254, 0.95);
+    --color-line: rgba(146, 157, 167, 0.4);
+    --color-line-light: rgba(146, 157, 167, 0.25);
+    --color-line-hover: rgba(0, 153, 255, 0.6);
+
+    --color-secondary: #0099ff;
+    --color-brand: #0099ff;
+    --color-brand-dark: #007acc;
+    --color-brand-light: #38bdf8;
+
+    --color-accent: #e8250e;
+    --color-accent-hover: #cf1f0a;
+
+    --color-text-main: #0f172a;
+    --color-text-secondary: #334155;
+    --color-text-muted: #64748b;
+
+    --header-h: 5rem;
+    --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    font-family: "Manrope", system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+    min-width: 320px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Sora", "Manrope", system-ui, sans-serif;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background: rgba(0, 153, 255, 0.25);
+    color: #0f172a;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #929da7;
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #64748b;
+  }
+}
+
+/* Professional Typography & Layout Primitives */
+@layer components {
+
+  /* Page frame */
+  .shell {
+    @apply mx-auto w-full max-w-[92rem] px-6 sm:px-10 lg:px-16;
+  }
+
+  .section {
+    @apply py-12 sm:py-16 md:py-20;
+  }
+
+  /* Parenthetical & Eyebrow labels */
+  .label {
+    @apply font-mono text-xs sm:text-[0.8125rem] uppercase tracking-[0.22em] text-[#929da7] font-semibold;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs sm:text-[0.8125rem] uppercase tracking-[0.25em] text-[#0099ff] font-bold;
+  }
+
+  /* Display Headings */
+  .display-xl {
+    @apply font-display font-bold text-slate-900;
+    font-size: clamp(2.75rem, 6.5vw, 5.75rem);
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+  }
+
+  .display-lg {
+    @apply font-display font-bold text-slate-900;
+    font-size: clamp(2.25rem, 4.8vw, 4.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .display-md {
+    @apply font-display font-bold text-slate-900;
+    font-size: clamp(1.85rem, 3.5vw, 3rem);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+  }
+
+  .display-sm {
+    @apply font-display font-semibold text-slate-900;
+    font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  .lede {
+    @apply text-lg sm:text-xl font-normal leading-relaxed text-slate-700;
+  }
+
+  /* Italic serif accent inside a heading */
+  .accent-serif {
+    font-family: "Instrument Serif", Georgia, serif;
+    @apply italic font-normal text-[#0099ff];
+    letter-spacing: -0.01em;
+    padding-right: 0.08em;
+  }
+
+  .dot {
+    @apply text-[#0099ff];
+  }
+
+  .rule {
+    @apply h-px w-full bg-[#929da7]/40;
+  }
+
+  /* Fluid light panels on lighter steel gray with touch of #fdfdfe */
+  .panel {
+    @apply relative rounded-3xl border border-[#929da7]/35 bg-[#fdfdfe] shadow-[0_8px_30px_rgba(0,0,0,0.06)];
+  }
+
+  .panel-hover {
+    @apply transition-all duration-500 ease-lux hover:border-[#0099ff] hover:shadow-[0_16px_40px_rgba(0,153,255,0.14)];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-[#929da7]/40 px-4 py-1.5 text-xs sm:text-sm font-mono font-medium text-slate-800 bg-[#fdfdfe] shadow-xs;
+  }
+
+  /* Pill Buttons */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-3 rounded-full px-7 py-3.5 sm:py-4 text-sm sm:text-base font-semibold tracking-wide overflow-hidden whitespace-nowrap transition-all duration-300 shadow-sm active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-[#e8250e] to-[#cf1f0a] text-white hover:from-[#cf1f0a] hover:to-[#b51806] shadow-md shadow-[#e8250e]/25 font-bold;
+  }
+
+  .btn-accent {
+    @apply bg-gradient-to-r from-[#e8250e] to-[#cf1f0a] text-white hover:from-[#cf1f0a] hover:to-[#b51806] shadow-md shadow-[#e8250e]/25 font-bold;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-r from-[#0099ff] to-[#007acc] text-white hover:from-[#0088e6] hover:to-[#006bb3] shadow-md shadow-[#0099ff]/25 font-bold;
+  }
+
+  .btn-ghost {
+    @apply border border-[#929da7]/50 text-slate-800 bg-[#fdfdfe] hover:border-[#0099ff] hover:text-[#0099ff] hover:bg-white font-semibold;
+  }
+
+  .btn-roll {
+    @apply relative block overflow-hidden;
+  }
+
+  .btn-roll>span {
+    @apply block transition-transform duration-500 ease-lux;
+  }
+
+  .btn-roll>span+span {
+    @apply absolute inset-0;
+    transform: translateY(110%);
+  }
+
+  .btn:hover .btn-roll>span:first-child,
+  .roll-trigger:hover .btn-roll>span:first-child {
+    transform: translateY(-110%);
+  }
+
+  .btn:hover .btn-roll>span+span,
+  .roll-trigger:hover .btn-roll>span+span {
+    transform: translateY(0);
+  }
+
+  .link-line {
+    @apply relative inline-flex items-center gap-2;
+  }
+
+  .link-line::after {
+    content: "";
+    @apply absolute left-0 -bottom-1 h-[2px] w-full bg-current origin-right scale-x-0 transition-transform duration-500 ease-lux;
+  }
+
+  .link-line:hover::after {
+    @apply origin-left scale-x-100;
+  }
+
+  /* Refined inputs */
+  .field {
+    @apply mt-2 w-full bg-[#fdfdfe] border border-[#929da7]/40 rounded-2xl px-4.5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 outline-none transition-colors duration-300 focus:border-[#0099ff] focus:ring-2 focus:ring-[#0099ff]/30;
+  }
+}
+
+/* ───────────────────────── Marquee Scrolling Animations ───────────────────────── */
+
+@keyframes marquee-ltr {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 32s linear infinite;
+  will-change: transform;
+}
+
+.marquee-wrap:hover .animate-marquee-ltr,
+.marquee-wrap:hover .animate-marquee-rtl {
+  animation-play-state: paused;
+}
